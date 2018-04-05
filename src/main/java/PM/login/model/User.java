@@ -8,6 +8,15 @@ public class User {
     private String username, password;
     private UserType type;
     private boolean status;
+    private int cont = 0;
+
+    public int getCont() {
+        return cont;
+    }
+
+    public void setCont(int cont) {
+        this.cont = cont;
+    }
     
     public User(String username, String password, UserType type) {
         this.username = username;
@@ -16,9 +25,9 @@ public class User {
     }
 
     public User(String user, String normal, UserType userType, boolean b) {
-        this.username = username;
-        this.password = password;
-        this.type = type;
+        this.username = user;
+        this.password = normal;
+        this.type = userType;
         this.status = b;
     }
 

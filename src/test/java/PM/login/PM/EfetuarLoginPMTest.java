@@ -114,25 +114,21 @@ public class EfetuarLoginPMTest {
         assertTrue(pagePM instanceof NormalUserMainPagePM);
         assertEquals("user", pagePM.getLoggedUser().getUsername());
     }
-
+    
     @Test
-    public void testNormalUserBloquiado() throws Exception {
+    public void testNormalUserBloqueado() throws Exception {
 
         UserDAO userDaoMock = mock(UserDAO.class);
         when(userDaoMock.getByName("user"))
                 .thenReturn(new User("user", "normal", UserType.NORMALUSER, false));
-
+        
         PerformLoginPM efetuarLoginPM = new PerformLoginPM();
-
-        efetuarLoginPM.setUserDao(userDaoMock);
-
         efetuarLoginPM.setLogin("user");
         efetuarLoginPM.setPassword("normal");
-
-        System.out.println("to aqui");
+        efetuarLoginPM.setUserDao(userDaoMock);
+        
         PagePM pagePM = efetuarLoginPM.pressLogin();
-        //when(pagePM.getLoggedUser().getStatus()).thenReturn(Boolean.TRUE); 
-        System.out.println("pagepm: " + pagePM.getLoggedUser().getStatus());
+
         assertFalse(pagePM.getLoggedUser().getStatus());
     }
 }
